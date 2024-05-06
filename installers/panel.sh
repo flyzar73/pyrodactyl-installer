@@ -103,12 +103,14 @@ install_composer() {
 }
 
 ptdl_dl() {
-  output "Downloading pterodactyl panel files .. "
+  output "Downloading pyrodactyl panel files .. "
   mkdir -p /var/www/pterodactyl
   cd /var/www/pterodactyl || exit
 
   curl -Lo panel.tar.gz "$PANEL_DL_URL"
   tar -xzvf panel.tar.gz
+  npm install
+  pnpm ship
   chmod -R 755 storage/* bootstrap/cache/
 
   cp .env.example .env
